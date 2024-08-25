@@ -1,5 +1,5 @@
 from config import * 
-import bitsandbytes as bnb
+import bitsandbytes 
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
 
