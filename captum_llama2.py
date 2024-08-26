@@ -25,8 +25,9 @@ def load_model(model_name, bnb_config, model_dir, cache_dir):
         quantization_config=bnb_config,
         device_map="auto", # dispatch efficiently the model on the available ressources
         max_memory = {i: max_memory for i in range(n_gpus)},
+        cache_dir=model_dir
     )
-    tokenizer = AutoTokenizer.from_pretrained(model_name, token=True)
+    tokenizer = AutoTokenizer.from_pretrained(model_name, token=True, cache_dir=cache_dir)
 
     # Needed for LLaMA tokenizer
     tokenizer.pad_token = tokenizer.eos_token
