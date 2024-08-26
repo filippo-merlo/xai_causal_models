@@ -77,6 +77,6 @@ print("attr to the output tokens:", attr_res.token_attr.shape)  # shape(n_output
 
 import matplotlib.pyplot as plt
 attr_res.plot_token_attr(show=False)
-plt.savefig(SAVE_IMAGE_PATH)
+plt.savefig(os.path.join(SAVE_IMAGE_PATH,"pert_based_attr.png"))
 # Optionally, close the plot to free up memory
 plt.close()
