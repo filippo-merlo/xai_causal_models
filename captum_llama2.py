@@ -87,7 +87,7 @@ inp = TextTokenInput(
     skip_tokens=[1],  # skip the special token for the start of the text <s>
 )
 
-target = "tzykanion"
+target = "it → tzykanion"
 
 attr_res = llm_attr.attribute(inp, target=target)
 
