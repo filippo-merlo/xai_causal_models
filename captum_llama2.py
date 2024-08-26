@@ -3,6 +3,7 @@ import os
 import bitsandbytes as bnb
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
+import matplotlib.pyplot as plt
 
 from captum.attr import (
     FeatureAblation, 
@@ -77,8 +78,50 @@ attr_res = llm_attr.attribute(inp, target=target)
 print("attr to the output sequence:", attr_res.seq_attr.shape)  # shape(n_input_token)
 print("attr to the output tokens:", attr_res.token_attr.shape)  # shape(n_output_token, n_input_token)
 
-import matplotlib.pyplot as plt
 attr_res.plot_token_attr(show=False)
-plt.savefig(os.path.join(SAVE_IMAGE_PATH,"pert_based_attr.png"))
-# Optionally, close the plot to free up memory
+plt.savefig(os.path.join(SAVE_IMAGE_PATH,"pert_based_attr_1.png"))
+plt.close()
+
+inp = TextTemplateInput(
+    template="{} lives in {}, {} and is a {}. {} personal interests include", 
+    values=["Dave", "Palm Coast", "FL", "lawyer", "His"],
+)
+
+target = "playing golf, hiking, and cooking."
+
+attr_res = llm_attr.attribute(inp, target=target)
+
+attr_res.plot_token_attr(show=False)
+plt.savefig(os.path.join(SAVE_IMAGE_PATH,"pert_based_attr_2.png"))
+plt.close()
+
+inp = TextTemplateInput(
+    template="{} lives in {}, {} and is a {}. {} personal interests include", 
+    values=["Dave", "Palm Coast", "FL", "lawyer", "His"],
+    baselines=["Sarah", "Seattle", "WA", "doctor", "Her"],
+)
+
+attr_res = llm_attr.attribute(inp, target=target)
+attr_res.plot_token_attr(show=False)
+plt.savefig(os.path.join(SAVE_IMAGE_PATH,"pert_based_attr_3.png"))
+plt.close()
+
+baselines = ProductBaselines(
+    {
+        ("name", "pronoun"):[("Sarah", "her"), ("John", "His"), ("Martin", "His"), ("Rachel", "Her")],
+        ("city", "state"): [("Seattle", "WA"), ("Boston", "MA")],
+        "occupation": ["doctor", "engineer", "teacher", "technician", "plumber"], 
+    }
+)
+
+inp = TextTemplateInput(
+    "{name} lives in {city}, {state} and is a {occupation}. {pronoun} personal interests include", 
+    values={"name":"Dave", "city": "Palm Coast", "state": "FL", "occupation":"lawyer", "pronoun":"His"}, 
+    baselines=baselines,
+    mask={"name":0, "city": 1, "state": 1, "occupation": 2, "pronoun": 0},
+)
+
+attr_res = llm_attr.attribute(inp, target=target, num_trials=3)
+attr_res.plot_token_attr(show=False)
+plt.savefig(os.path.join(SAVE_IMAGE_PATH,"pert_based_attr_4.png"))
 plt.close()
