@@ -75,4 +75,8 @@ attr_res = llm_attr.attribute(inp, target=target)
 print("attr to the output sequence:", attr_res.seq_attr.shape)  # shape(n_input_token)
 print("attr to the output tokens:", attr_res.token_attr.shape)  # shape(n_output_token, n_input_token)
 
-attr_res.plot_token_attr(show=True)
+import matplotlib.pyplot as plt
+attr_res.plot_token_attr(show=False)
+plt.savefig(SAVE_IMAGE_PATH)
+# Optionally, close the plot to free up memory
+plt.close()
