@@ -50,24 +50,7 @@ bnb_config = create_bnb_config()
 
 model, tokenizer = load_model(model_name, bnb_config, MODEL_PATH, CACHE_DIR)
 
-eval_prompt = """Answer Q1 looking at the following text: Byzantines were avid players of tavli (Byzantine Greek:
-τάβλη), a game known in English as backgammon, which is still
-popular in former Byzantine realms, and still known by the
-name tavli in Greece. Byzantine nobles were devoted to
-horsemanship, particularly tzykanion, now known as polo.
-The game came from Sassanid Persia in the early period and a
-Tzykanisterion (stadium for playing the game) was built by
-Theodosius II (r. 408–450) inside the Great Palace of
-Constantinople. Emperor Basil I (r. 867–886) excelled at it;
-Emperor Alexander (r. 912–913) died from exhaustion while
-playing, Emperor Alexios I Komnenos (r. 1081–1118) was
-injured while playing with Tatikios, and John I of Trebizond (r.
-1235–1238) died from a fatal injury during a game. Aside from
-Constantinople and Trebizond, other Byzantine cities also
-featured tzykanisteria, most notably Sparta, Ephesus, and
-Athens, an indication of a thriving urban aristocracy.
-Q1. What is the Byzantine name of the game that Emperor
-Basil I excelled at?"""
+eval_prompt = "Dave lives in Palm Coast, FL and is a lawyer. His personal interests include"
 
 model_input = tokenizer(eval_prompt, return_tensors="pt").to("cuda")
 model.eval()
@@ -87,7 +70,7 @@ inp = TextTokenInput(
     skip_tokens=[1],  # skip the special token for the start of the text <s>
 )
 
-target = "it → tzykanion"
+target = "playing guitar, hiking, and spending time with his family."
 
 attr_res = llm_attr.attribute(inp, target=target)
 
