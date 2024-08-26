@@ -50,7 +50,7 @@ bnb_config = create_bnb_config()
 
 model, tokenizer = load_model(model_name, bnb_config, MODEL_PATH, CACHE_DIR)
 
-eval_prompt = """Byzantines were avid players of tavli (Byzantine Greek:
+eval_prompt = """Answer Q1 looking at the following text: Byzantines were avid players of tavli (Byzantine Greek:
 τάβλη), a game known in English as backgammon, which is still
 popular in former Byzantine realms, and still known by the
 name tavli in Greece. Byzantine nobles were devoted to
