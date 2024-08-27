@@ -4,8 +4,8 @@ import torch
 import numpy as np
 
 # Load the Quoref dataset
-dataset = load_dataset("allenai/quoref", split="train", cache_dir=DATASET_PATH, trust_remote_code=True)
-dataset_iter = iter(dataset)
+dataset = load_dataset("allenai/quoref", cache_dir=DATASET_PATH, trust_remote_code=True)
+dataset_iter = iter(dataset['train'])
 
 # Get the lenght of the context
 lenghts = []
