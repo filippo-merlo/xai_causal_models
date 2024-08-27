@@ -54,7 +54,16 @@ model, tokenizer = load_model(model_name, bnb_config, MODEL_PATH, CACHE_DIR)
 
 eval_prompt = "Dave lives in Palm Coast, FL and is a lawyer. His personal interests include"
 
-model_input = tokenizer(eval_prompt, return_tensors="pt").to("cuda")
+#model_input = tokenizer(eval_prompt, return_tensors="pt").to("cuda")
+messages = [
+    {"role": "system", "content": "You are an helpful assistant who answewrs questions in a correct and synthetic way."},
+    {"role": "user", "content": f"{eval_prompt}"},
+]
+model_input = tokenizer.apply_chat_template(
+    messages,
+    add_generation_prompt=True,
+    return_tensors="pt"
+).to(model.device)
 model.eval()
 with torch.no_grad():
     output_ids = model.generate(model_input["input_ids"], max_new_tokens=15)[0]

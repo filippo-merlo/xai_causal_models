@@ -12,7 +12,7 @@ dataset_iter = iter(dataset['train'])
 
 # Get the lenght of the context
 lenghts = []
-short_context_dataset = []
+DATASET_SHORT = []
 for _ in range(len_dataset):
     example = next(dataset_iter)
     position = example['answers']['answer_start'][0]
@@ -20,7 +20,7 @@ for _ in range(len_dataset):
     lenghts.append(len(context))
     # filter below the 1st percentile
     if len(context) < 1010:
-        short_context_dataset.append(example)
+        DATASET_SHORT.append(example)
 
 # Print the 1th percentile of the lenghts
 percentile_1th = np.percentile(lenghts, 1)
