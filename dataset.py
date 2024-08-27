@@ -14,6 +14,6 @@ for _ in range(1):
     context = context[:position] + "[!!!!!!!!!START!!!!!!!!]" + context[position:]
     #context = context.split()
     #context.insert(position, "[!!!!!!!!!START!!!!!!!!]") 
-    #print(context)
+    print(context)
 
 
