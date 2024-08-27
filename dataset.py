@@ -8,16 +8,17 @@ dataset = load_dataset("allenai/quoref", cache_dir=DATASET_PATH, trust_remote_co
 len_dataset = len(dataset['train'])
 dataset_iter = iter(dataset['train'])
 
-# Get the lenght of the context
-lenghts = []
+# the 1 percentile of the lenghts is 1009.98
+
+# filter examples by lenght
+short_context_dataset = []
 for _ in range(len_dataset):
     example = next(dataset_iter)
     position = example['answers']['answer_start'][0]
     context = example["context"]
-    lenghts.append(len(context))
-# Print the 99th percentile of the lenghts
-print(lenghts)
-print(np.percentile(lenghts, 1))
+    if len(context) < 1010:
+        short_context_dataset.append(example)
 
+print(len(short_context_dataset))
 
 
