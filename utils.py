@@ -18,7 +18,16 @@ def exact_match(predictions, references):
 # predictions (list of str): List of predicted texts.
 # references (list of str): List of reference texts.
 def match(predictions, references):
-    return {'match':sum([1 for p, r in zip(predictions, references) if r in p]) / len(references)}
+    true_l = []
+    false_l = []
+    matches = 0
+    for i, p, r in enumerate(zip(predictions, references)):
+        if r in p:
+            matches += 1
+            true_l.append(i)
+        else:
+            false_l.append(i)
+    return {'match':matches / len(references)}, true_l, false_l
 
 # f1 score
 # predictions (list of int): Predicted labels.
