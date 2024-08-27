@@ -15,6 +15,7 @@ for _ in range(10000):
     context = example["context"][0]
     lenghts.append(len(context))
 # Print the 99th percentile of the lenghts
+print(lenghts)
 print(np.percentile(lenghts, 5))
 
 
