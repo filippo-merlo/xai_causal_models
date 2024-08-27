@@ -60,7 +60,7 @@ answers = []
 for idx, example in enumerate(DATASET_SHORT[:20]):
     context = example["context"]
     question = example["question"]
-    answer = example["answers"]["text"]
+    answer = example["answers"]["text"][0]
     answer_start = example["answers"]["answer_start"]
 
     eval_prompt = context + ' ' + question
