@@ -58,20 +58,19 @@ for idx, example in enumerate(DATASET_SHORT):
     answer = example["answers"]["text"]
     answer_start = example["answers"]["answer_start"]
 
+    eval_prompt = context + ' ' + question
 
-    #eval_prompt = "Dave lives in Palm Coast, FL and is a lawyer. His personal interests include"
-#
-    #messages = [
-    #    {"role": "system", "content": "You are an helpful assistant who answewrs questions in a correct and synthetic way."},
-    #    {"role": "user", "content": f"{eval_prompt}"},
-    #]
-    #model_input = tokenizer.apply_chat_template(
-    #    messages,
-    #    add_generation_prompt=True,
-    #    return_tensors="pt"
-    #).to(model.device)
-    #model.eval()
-    #with torch.no_grad():
-    #    output_ids = model.generate(model_input["input_ids"], max_new_tokens=15)[0]
-    #    response = tokenizer.decode(output_ids, skip_special_tokens=True)
-    #    print(response)
+    messages = [
+        {"role": "system", "content": "You are an helpful assistant who answewrs questions in a correct and synthetic way."},
+        {"role": "user", "content": f"{eval_prompt}"},
+    ]
+    model_input = tokenizer.apply_chat_template(
+        messages,
+        add_generation_prompt=True,
+        return_tensors="pt"
+    ).to(model.device)
+    model.eval()
+    with torch.no_grad():
+        output_ids = model.generate(model_input["input_ids"], max_new_tokens=15)[0]
+        response = tokenizer.decode(output_ids, skip_special_tokens=True)
+        print(response)
