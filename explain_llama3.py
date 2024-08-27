@@ -61,7 +61,7 @@ for idx, example in enumerate(DATASET_SHORT[:10]):
     eval_prompt = context + ' ' + question
 
     messages = [
-        {"role": "system", "content": "You are an helpful assistant who answewrs questions in a correct and synthetic way. Respond with only the name required."},
+        {"role": "system", "content": "You are a helpful assistant who answers questions accurately and concisely. Respond with only the required name."},
         {"role": "user", "content": f"{eval_prompt}"},
     ]
     model_input = tokenizer.apply_chat_template(
