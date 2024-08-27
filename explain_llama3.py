@@ -69,8 +69,9 @@ for idx, example in enumerate(DATASET_SHORT):
         add_generation_prompt=True,
         return_tensors="pt"
     ).to(model.device)
+    
     model.eval()
     with torch.no_grad():
-        output_ids = model.generate(model_input["input_ids"], max_new_tokens=15)[0]
+        output_ids = model.generate(model_input, max_new_tokens=15)[0]
         response = tokenizer.decode(output_ids, skip_special_tokens=True)
         print(response)
