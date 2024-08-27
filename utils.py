@@ -21,7 +21,9 @@ def match(predictions, references):
     true_l = []
     false_l = []
     matches = 0
-    for i, p, r in enumerate(zip(predictions, references)):
+    for i  in range(len(references)):
+        r = references[i]
+        p = predictions[i]
         if r in p:
             matches += 1
             true_l.append(i)
