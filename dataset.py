@@ -18,6 +18,7 @@ for _ in range(len_dataset):
     context = example["context"]
     if len(context) < 1010:
         short_context_dataset.append(example)
+        print(context)
 
 print(len(short_context_dataset))
 
