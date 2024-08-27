@@ -25,4 +25,4 @@ def f1(predictions, references):
 # remove ounctuation 
 import re
 def remove_punct(text):
-    return re.sub(r'[^\w\s]', '', text)
+    return re.sub(r'[^\w\s\d]', '', text)
