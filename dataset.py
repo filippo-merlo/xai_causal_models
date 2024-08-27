@@ -15,7 +15,7 @@ for _ in range(dataset.__len__()):
     context = example["context"][0]
     lenghts.append(len(context))
 # Print the 99th percentile of the lenghts
-print(np.percentile(lenghts, 95))
+print(np.percentile(lenghts, 90))
 
 
 
