@@ -12,7 +12,7 @@ lenghts = []
 for _ in range(10000):
     example = next(dataset_iter)
     position = example['answers']['answer_start'][0]
-    context = example["context"][0]
+    context = example["context"]
     lenghts.append(len(context))
 # Print the 99th percentile of the lenghts
 print(lenghts)
