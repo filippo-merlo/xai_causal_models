@@ -87,9 +87,9 @@ for idx, example in enumerate(DATASET_SHORT[:4]):
             eos_token_id=terminators)[0]
         response = tokenizer.decode(output_ids, skip_special_tokens=True)
         response = response.split('\n')[-1]
-        
+
     responses.append(remove_punct(response))
     answers.append(answer)
 
-
-print(exact_match(responses, answers))
+for i in range(len(answers)):
+    print(exact_match(responses[i], answers[i]))
