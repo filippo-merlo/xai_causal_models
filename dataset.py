@@ -13,7 +13,7 @@ for _ in range(1):
     context = example["context"][0]
     context = context.split()
     print(context)
-    context = context.insert(position, "[START]") 
+    context.insert(position, "[START]") 
     print(context)
 
 
