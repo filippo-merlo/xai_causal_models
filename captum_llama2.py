@@ -45,7 +45,8 @@ def create_bnb_config():
 
     return bnb_config
 
-model_name = "meta-llama/Llama-2-13b-chat-hf" 
+#model_name = "meta-llama/Llama-2-13b-chat-hf" 
+model_name = "meta-llama/Meta-Llama-3-8B-Instruct"
 
 bnb_config = create_bnb_config()
 
