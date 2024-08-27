@@ -56,8 +56,8 @@ eval_prompt = "Dave lives in Palm Coast, FL and is a lawyer. His personal intere
 
 #model_input = tokenizer(eval_prompt, return_tensors="pt").to("cuda")
 messages = [
-    {"role": "system", "content": "You are an helpful assistant who answewrs questions in a correct and synthetic way."},
-    {"role": "user", "content": f"{eval_prompt}"},
+    {"role": "system", "content": "You are an helpful assistant who answewrs questions in a correct and synthetic way.\n"},
+    {"role": "user", "content": f"{eval_prompt}\n"},
 ]
 model_input = tokenizer.apply_chat_template(
     messages,

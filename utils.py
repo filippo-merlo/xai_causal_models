@@ -9,6 +9,13 @@ exact_match_metric = load("exact_match")
 def exact_match(predictions, references):
     return exact_match_metric.compute(predictions=predictions, references=references)
 
+# f1 score
+# predictions (list of int): Predicted labels.
+# references (list of int): Ground truth labels.
+f1_metric = load("f1")
+def f1(predictions, references):
+    return f1_metric.compute(predictions=predictions, references=references)
+
 # remove ounctuation 
 import re
 def remove_punct(text):
