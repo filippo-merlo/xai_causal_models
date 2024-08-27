@@ -80,6 +80,5 @@ for idx, example in enumerate(DATASET_SHORT[:4]):
         output_ids = model.generate(
             model_input, max_new_tokens=20,
             eos_token_id=terminators)[0]
-        
         response = tokenizer.decode(output_ids, skip_special_tokens=True)
         print(response)
