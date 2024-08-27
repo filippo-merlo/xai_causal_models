@@ -9,7 +9,7 @@ dataset_iter = iter(dataset['train'])
 
 # Get the lenght of the context
 lenghts = []
-for _ in range(dataset.__len__()):
+for _ in range(dataset_iter.__len__()):
     example = next(dataset_iter)
     position = example['answers']['answer_start'][0]
     context = example["context"][0]
