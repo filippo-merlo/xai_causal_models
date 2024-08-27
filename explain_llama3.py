@@ -83,7 +83,7 @@ for idx, example in enumerate(DATASET_SHORT[:20]):
     model.eval()
     with torch.no_grad():
         output_ids = model.generate(
-            model_input, max_new_tokens=20,
+            model_input, max_new_tokens=100,
             eos_token_id=terminators)[0]
         response = tokenizer.decode(output_ids, skip_special_tokens=True)
         response = response.split('\n')[-1]
@@ -93,3 +93,4 @@ for idx, example in enumerate(DATASET_SHORT[:20]):
 
 
 print(exact_match(responses, answers))
+print(match(responses, answers))
