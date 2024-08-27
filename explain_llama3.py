@@ -57,7 +57,7 @@ model, tokenizer = load_model(model_name, bnb_config, MODEL_PATH, CACHE_DIR)
 responses = []
 answers = []
 
-for idx, example in enumerate(DATASET_SHORT[:4]):
+for idx, example in enumerate(DATASET_SHORT[:20]):
     context = example["context"]
     question = example["question"]
     answer = example["answers"]["text"]
