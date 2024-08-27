@@ -52,7 +52,7 @@ bnb_config = create_bnb_config()
 
 model, tokenizer = load_model(model_name, bnb_config, MODEL_PATH, CACHE_DIR)
 
-for idx, example in enumerate(DATASET_SHORT[:10]):
+for idx, example in enumerate(DATASET_SHORT[:4]):
     context = example["context"]
     question = example["question"]
     answer = example["answers"]["text"]
