@@ -5,15 +5,17 @@ import numpy as np
 
 # Load the Quoref dataset
 dataset = load_dataset("allenai/quoref", split="train", cache_dir=DATASET_PATH, trust_remote_code=True)
-dataloader = torch.utils.data.DataLoader(dataset, batch_size=1)
+dataset_iter = iter(dataset)
 
+# Get the lenght of the context
 lenghts = []
 for _ in range(dataset.__len__()):
-    example = next(iter(dataloader))
+    example = next(dataset_iter)
     position = example['answers']['answer_start'][0]
     context = example["context"][0]
     lenghts.append(len(context))
+# Print the 99th percentile of the lenghts
+print(np.percentile(lenghts, 99))
 
-print(np.percentile(lenghts, 1))
 
 
