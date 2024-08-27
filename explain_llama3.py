@@ -52,7 +52,7 @@ bnb_config = create_bnb_config()
 
 model, tokenizer = load_model(model_name, bnb_config, MODEL_PATH, CACHE_DIR)
 
-for idx, example in enumerate(DATASET_SHORT):
+for idx, example in enumerate(DATASET_SHORT[:10]):
     context = example["context"]
     question = example["question"]
     answer = example["answers"]["text"]
@@ -69,9 +69,15 @@ for idx, example in enumerate(DATASET_SHORT):
         add_generation_prompt=True,
         return_tensors="pt"
     ).to(model.device)
+
+    terminators = [
+    tokenizer.eos_token_id,
+    tokenizer.convert_tokens_to_ids("<|eot_id|>")
+    ]
     
     model.eval()
     with torch.no_grad():
-        output_ids = model.generate(model_input, max_new_tokens=15)[0]
+        output_ids = model.generate(model_input, max_new_tokens=256,
+        eos_token_id=terminators)[0]
         response = tokenizer.decode(output_ids, skip_special_tokens=True)
         print(response)
