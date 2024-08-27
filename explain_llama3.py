@@ -1,10 +1,12 @@
 from config import * 
+from utils import * 
+from dataset import * 
+
 import os
 import bitsandbytes as bnb
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
 import matplotlib.pyplot as plt
-from dataset import * 
 
 from captum.attr import (
     FeatureAblation, 
@@ -52,6 +54,9 @@ bnb_config = create_bnb_config()
 
 model, tokenizer = load_model(model_name, bnb_config, MODEL_PATH, CACHE_DIR)
 
+responses = []
+answers = []
+
 for idx, example in enumerate(DATASET_SHORT[:4]):
     context = example["context"]
     question = example["question"]
@@ -81,5 +86,9 @@ for idx, example in enumerate(DATASET_SHORT[:4]):
             model_input, max_new_tokens=20,
             eos_token_id=terminators)[0]
         response = tokenizer.decode(output_ids, skip_special_tokens=True)
-        print(response)
-    
+
+    responses.append(remove_punct(response))
+    answers.append(answer)
+
+
+print(exact_match(responses, answers))
