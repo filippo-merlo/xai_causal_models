@@ -78,7 +78,7 @@ for idx, example in enumerate(DATASET_SHORT[:10]):
     model.eval()
     with torch.no_grad():
         output_ids = model.generate(
-            model_input, max_new_tokens=256,
+            model_input, max_new_tokens=20,
             eos_token_id=terminators)[0]
         
         response = tokenizer.decode(output_ids, skip_special_tokens=True)
