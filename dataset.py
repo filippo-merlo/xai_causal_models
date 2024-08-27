@@ -9,3 +9,9 @@ dataloader = torch.utils.data.DataLoader(dataset, batch_size=1)
 for _ in range(1):
     example = next(iter(dataloader))
     print(example)
+    position = example['answers']['answer_start'][0]
+    context = example["context"]
+    context = context[:position] + "[START]" + context[position:]
+    print(context)
+
+
