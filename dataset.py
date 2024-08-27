@@ -10,7 +10,7 @@ for _ in range(1):
     example = next(iter(dataloader))
     print(example)
     position = example['answers']['answer_start'][0]
-    context = example["context"]
+    context = example["context"][0]
     context = context[:position] + "[START]" + context[position:]
     print(context)
 
