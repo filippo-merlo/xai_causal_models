@@ -61,8 +61,8 @@ for idx, example in enumerate(DATASET_SHORT[:10]):
     eval_prompt = context + ' ' + question
 
     messages = [
-        {"role": "system", "content": "You are an helpful assistant who answewrs questions in a correct and synthetic way."},
-        {"role": "user", "content": f"{eval_prompt}"},
+        {"role": "system", "content": "You are an helpful assistant who answewrs questions in a correct and synthetic way. Provide only the crucial information for answering the question.\n"},
+        {"role": "user", "content": f"{eval_prompt}\n"},
     ]
     model_input = tokenizer.apply_chat_template(
         messages,
@@ -77,7 +77,9 @@ for idx, example in enumerate(DATASET_SHORT[:10]):
     
     model.eval()
     with torch.no_grad():
-        output_ids = model.generate(model_input, max_new_tokens=256,
-        eos_token_id=terminators)[0]
+        output_ids = model.generate(
+            model_input, max_new_tokens=256,
+            eos_token_id=terminators)[0]
+        
         response = tokenizer.decode(output_ids, skip_special_tokens=True)
         print(response)
