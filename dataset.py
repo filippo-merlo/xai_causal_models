@@ -12,7 +12,7 @@ for _ in range(dataset.__len__()):
     example = next(iter(dataloader))
     position = example['answers']['answer_start'][0]
     context = example["context"][0]
-    lenghts.append(context)
+    lenghts.append(len(context))
 
 print(np.percentile(lenghts, 5))
 
