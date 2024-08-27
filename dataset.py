@@ -20,6 +20,6 @@ for _ in range(len_dataset):
         short_context_dataset.append(example)
         print(context)
 
-print(len(short_context_dataset))
+print(len(set(short_context_dataset)))
 
 
