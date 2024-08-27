@@ -14,6 +14,6 @@ for _ in range(dataset.__len__()):
     context = example["context"][0]
     lenghts.append(len(context))
 
-print(np.percentile(lenghts, 5))
+print(np.percentile(lenghts, 1))
 
 
