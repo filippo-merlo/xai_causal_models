@@ -91,6 +91,4 @@ for idx, example in enumerate(DATASET_SHORT[:]):
     responses.append(remove_punct(response))
     answers.append(answer)
 
-
-print(exact_match(responses, answers))
 print(match(responses, answers))
