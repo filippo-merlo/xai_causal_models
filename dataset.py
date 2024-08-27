@@ -12,7 +12,6 @@ for _ in range(1):
     position = example['answers']['answer_start'][0]
     context = example["context"][0]
     context = context.split()
-    print(context)
     context.insert(position, "[START]") 
     print(context)
 
