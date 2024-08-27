@@ -88,8 +88,8 @@ for idx, example in enumerate(DATASET_SHORT[:20]):
         response = tokenizer.decode(output_ids, skip_special_tokens=True)
         response = response.split('\n')[-1]
 
-    responses.append(remove_punct(response).lower())
-    answers.append(answer.lower())
+    responses.append(remove_punct(response))
+    answers.append(answer)
 
 
 print(exact_match(responses, answers))
