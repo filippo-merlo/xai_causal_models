@@ -48,7 +48,7 @@ def create_bnb_config():
 
     return bnb_config
 
-model_name = "meta-llama/Meta-Llama-3-8B"#"meta-llama/Meta-Llama-3-8B-Instruct"
+model_name = "meta-llama/Meta-Llama-3-8B-Instruct"# "meta-llama/Meta-Llama-3-8B"#
 
 bnb_config = create_bnb_config()
 
