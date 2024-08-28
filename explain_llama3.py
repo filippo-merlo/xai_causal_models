@@ -63,7 +63,7 @@ for idx, example in enumerate(DATASET_SHORT[:]):
     answer = example["answers"]["text"][0]
     answer_start = example["answers"]["answer_start"]
 
-    eval_prompt = context + '\nQuestion:' + question + '\nAnswer:'
+    eval_prompt = context + '\nQuestion:' + question + '\nAnswer: The answer is '
     model_input = tokenizer(eval_prompt, return_tensors="pt").to(model.device)
     '''
     messages = [
@@ -87,7 +87,7 @@ for idx, example in enumerate(DATASET_SHORT[:]):
             **model_input)[0]
         response = tokenizer.decode(output_ids, skip_special_tokens=True)
         print(response)
-        response = response.split('\nAnswer:')[-1]
+        response = response.split('\nAnswer: The answer is ')[-1]
         print('***',response)
     print('***',answer)
     responses.append(remove_punct(response))
