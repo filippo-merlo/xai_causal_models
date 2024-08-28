@@ -93,4 +93,18 @@ for idx, example in enumerate(DATASET_SHORT[:]):
     responses.append(remove_punct(response))
     answers.append(answer)
 
+print(exact_match(responses, answers))
 print(match(responses, answers))
+
+score, true_l, false_l = match(responses, answers)
+
+import json 
+
+with open(os.path.join(SAVE_IMAGE_PATH, 'short_dataset.json'), 'w') as f:
+    json.dump(DATASET_SHORT, f)
+
+with open(os.path.join(SAVE_IMAGE_PATH, 'responses.json'), 'r') as f:
+    json.dump(responses, f)
+
+with open(os.path.join(SAVE_IMAGE_PATH, 'true_answers.json'), 'r') as f:
+    json.dump(true_l, f)

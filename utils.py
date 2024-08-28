@@ -31,7 +31,7 @@ def match(predictions, references):
             false_l.append(i)
     return {'match':matches / len(references)}, true_l, false_l
 
-# remove ounctuation 
+# remove punctuation 
 import re
 def remove_punct(text):
     return re.sub(r'[^\w\s\d]', '', text)
