@@ -75,16 +75,16 @@ for idx, example in enumerate(DATASET_SHORT[:]):
         add_generation_prompt=True,
         return_tensors="pt"
     ).to(model.device)
-    '''
+
     terminators = [
     tokenizer.eos_token_id,
     tokenizer.convert_tokens_to_ids("<|eot_id|>")
     ]
-
+    '''
     model.eval()
     with torch.no_grad():
         output_ids = model.generate(
-            **model_input)[0]
+            model_input["input_ids"])[0]
         response = tokenizer.decode(output_ids, skip_special_tokens=True)
         print(response)
         response = response.split('\nAnswer:')[-1]
