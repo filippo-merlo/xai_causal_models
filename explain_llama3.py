@@ -63,8 +63,9 @@ for idx, example in enumerate(DATASET_SHORT[:]):
     answer = example["answers"]["text"][0]
     answer_start = example["answers"]["answer_start"]
 
-    eval_prompt = context + ' ' + question
-
+    eval_prompt = context + '\nQuestion:' + question + '\nAnswer:'
+    model_input = tokenizer(eval_prompt, return_tensors="pt").to(model.device)
+    '''
     messages = [
         {"role": "system", "content": "You are a helpful assistant who answers questions accurately and concisely. Respond only with the required name, without additional information.\n"},
         {"role": "user", "content": f"{eval_prompt}\n"},
@@ -74,12 +75,12 @@ for idx, example in enumerate(DATASET_SHORT[:]):
         add_generation_prompt=True,
         return_tensors="pt"
     ).to(model.device)
-
+    '''
     terminators = [
     tokenizer.eos_token_id,
     tokenizer.convert_tokens_to_ids("<|eot_id|>")
     ]
-    
+
     model.eval()
     with torch.no_grad():
         output_ids = model.generate(
@@ -87,7 +88,7 @@ for idx, example in enumerate(DATASET_SHORT[:]):
             eos_token_id=terminators)[0]
         response = tokenizer.decode(output_ids, skip_special_tokens=True)
         print(response)
-        response = response.split('\n')[-1]
+        response = response.split('\nAnswer:')[-1]
         print('***',response)
     print('***',answer)
     responses.append(remove_punct(response))
