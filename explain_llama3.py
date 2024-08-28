@@ -84,7 +84,7 @@ for idx, example in enumerate(DATASET_SHORT[:]):
     model.eval()
     with torch.no_grad():
         output_ids = model.generate(
-            **model_input)[0]
+            **model_input, terminators)[0]
         response = tokenizer.decode(output_ids, skip_special_tokens=True)
         print(response)
         response = response.split('\nAnswer: The answer is ')[-1]
