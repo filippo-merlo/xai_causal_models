@@ -63,7 +63,7 @@ for idx, example in enumerate(DATASET_SHORT[:]):
     answer = example["answers"]["text"][0]
     answer_start = example["answers"]["answer_start"]
 
-    eval_prompt = context + '\nQuestion:' + question + '\nAnswer: The answer is '
+    eval_prompt = context + '\nQuestion:' + question + '\nAnswer:'
     model_input = tokenizer(eval_prompt, return_tensors="pt").to(model.device)
     '''
     messages = [
