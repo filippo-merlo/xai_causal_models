@@ -64,7 +64,7 @@ for idx, example in enumerate(DATASET_SHORT[:]):
     answer_start = example["answers"]["answer_start"]
 
     eval_prompt = context + '\nQuestion:' + question + '\nAnswer:'
-    model_input = tokenizer(eval_prompt, return_tensors="pt").to(model.device)
+    model_input = tokenizer(eval_prompt, add_generation_prompt=True, return_tensors="pt").to(model.device)
     '''
     messages = [
         {"role": "system", "content": "You are a helpful assistant who answers questions accurately and concisely. Respond only with the required name, without additional information.\n"},
