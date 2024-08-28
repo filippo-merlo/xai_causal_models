@@ -87,7 +87,7 @@ for idx, example in enumerate(DATASET_SHORT[:]):
             input_ids = model_input, eos_token_id = terminators)[0]
         response = tokenizer.decode(output_ids, skip_special_tokens=True)
         print(response)
-        response = response.split('\nAnswer: The answer is ')[-1]
+        response = response.split('\nAnswer:')[-1]
         print('***',response)
     print('***',answer)
     responses.append(remove_punct(response))
