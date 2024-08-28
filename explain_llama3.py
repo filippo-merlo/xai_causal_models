@@ -103,8 +103,8 @@ import json
 with open(os.path.join(SAVE_IMAGE_PATH, 'short_dataset.json'), 'w') as f:
     json.dump(DATASET_SHORT, f)
 
-with open(os.path.join(SAVE_IMAGE_PATH, 'responses.json'), 'r') as f:
+with open(os.path.join(SAVE_IMAGE_PATH, 'responses.json'), 'w') as f:
     json.dump(responses, f)
 
-with open(os.path.join(SAVE_IMAGE_PATH, 'true_answers.json'), 'r') as f:
+with open(os.path.join(SAVE_IMAGE_PATH, 'true_answers.json'), 'w') as f:
     json.dump(true_l, f)
